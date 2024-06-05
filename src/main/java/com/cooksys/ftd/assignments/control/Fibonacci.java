@@ -24,7 +24,21 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+        if(i<0){
+            throw new IllegalArgumentException("Index can not be less than zero");
+        } else if (i==0||i==1) {
+            return 1;
+        }else {
+            int a=1;
+            int b=1;
+            for (int j=2;j<=i;j++){
+                int temp=a;
+                a=b;
+                b=temp+b;
+
+            }
+            return b;
+        }
     }
 
     /**
@@ -38,7 +52,30 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+        if (start < 0 || end < 0 || end<start) {
+            throw new IllegalArgumentException();
+        }
+
+        int count = end - start;
+        int[] sequence = new int[count];
+        int a = 1, b = 1;
+
+        // Calculate Fibonacci sequence up to the start index
+        for (int i = 0; i < start; i++) {
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+
+        // Calculate the slice of the Fibonacci sequence
+        for (int i = 0; i < count; i++) {
+            sequence[i] = a;
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+
+        return sequence;
     }
 
     /**
@@ -49,6 +86,26 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+        if (count < 0) {
+            throw new IllegalArgumentException("Count cannot be negative");
+        }
+
+        int[] sequence = new int[count];
+        if (count == 0) {
+            return sequence;
+        }
+
+        sequence[0] = 1;
+        if (count == 1) {
+            return sequence;
+        }
+
+        sequence[1] = 1;
+        for (int i = 2; i < count; i++) {
+            sequence[i] = sequence[i - 1] + sequence[i - 2];
+        }
+
+        return sequence;
+
     }
 }

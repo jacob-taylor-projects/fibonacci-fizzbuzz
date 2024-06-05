@@ -2,6 +2,10 @@ package com.cooksys.ftd.assignments.control;
 
 import com.cooksys.ftd.assignments.control.util.MissingImplementationException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * FizzBuzz is an old programming exercise.
@@ -27,7 +31,13 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+       if(b==0){
+           throw new IllegalArgumentException("Can not divide by zero");
+       }else if(a%b==0){
+           return true;
+       }else{
+           return false;
+       }
     }
 
     /**
@@ -42,7 +52,15 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new MissingImplementationException();
+        if(n%3==0&&n%5==0){
+            return n+": FizzBuzz";
+        } else if (n%3==0) {
+            return n+ ": Fizz";
+        } else if (n%5==0) {
+            return n+": Buzz";
+        }else{
+            return null;
+        }
     }
 
     /**
@@ -56,7 +74,18 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new MissingImplementationException();
+        if(end<start){
+            throw new IllegalArgumentException("The end can not be less than the start");
+        }
+        List<String> messages=new ArrayList<>();
+        for (int i = start; i < end; i++) {
+        String message=message(i);
+            if (message != null) {
+                messages.add(message);
+            }
+        }
+
+        return messages.toArray(new String[0]);
     }
 
     /**
@@ -64,7 +93,7 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new MissingImplementationException();
+      System.out.println(Arrays.toString(messages(1, 115)));
     }
 
 }
